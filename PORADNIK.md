@@ -1,14 +1,14 @@
-# Poradnik GitHub i Docker â€” Windows / PowerShell
+# Poradnik GitHub i Docker — Windows / PowerShell
 
-## 1. Gdzie sÄ… projekty
+## 1. Gdzie są projekty
 
-DokĹ‚adne Ĺ›cieĹĽki zawiera [INWENTARYZACJA.md](INWENTARYZACJA.md). OryginaĹ‚y w Documents/Codex z 23 wrzeĹ›nia, 25 wrzeĹ›nia i 2 paĹşdziernika nadal zasilajÄ… kontenery. Przygotowane repozytoria znajdujÄ… siÄ™ obok tego indeksu w katalogu outputs z 12 paĹşdziernika. To osobne kopie: zmiana jednej nie aktualizuje automatycznie drugiej ani dziaĹ‚ajÄ…cego obrazu Docker.
+Dokładne ścieżki zawiera [INWENTARYZACJA.md](INWENTARYZACJA.md). Oryginały w Documents/Codex z 23 września, 25 września i 2 października nadal zasilają kontenery. Przygotowane repozytoria znajdują się obok tego indeksu w katalogu outputs z 12 października. To osobne kopie: zmiana jednej nie aktualizuje automatycznie drugiej ani działającego obrazu Docker.
 
-Docelowe repozytoria HMpower1: temp-mail, velin-whiteboard, voidnas, serwerbb-backend, server-infra, projects-index. PoniĹĽsze polecenia klonowania zadziaĹ‚ajÄ… dopiero po potwierdzonym utworzeniu prywatnych repozytoriĂłw. Obecny stan publikacji sprawdĹş w RAPORT.md; adresy nie sÄ… dowodem wykonania push.
+Docelowe repozytoria HMpower1: temp-mail, velin-whiteboard, voidnas, serwerbb-backend, server-infra, projects-index. Prywatne repozytoria zostały utworzone i sprawdzone; poniższe polecenia wymagają dostępu zalogowanego właściciela. Obecny stan publikacji sprawdź w RAPORT.md; prywatność i push potwierdzono przez API.
 
-## 2. NarzÄ™dzia i dostÄ™p
+## 2. Narzędzia i dostęp
 
-Zainstaluj Git i Docker Desktop. Docker powinien korzystaÄ‡ z kontenerĂłw Linux. W PowerShell sprawdĹş:
+Zainstaluj Git i Docker Desktop. Docker powinien korzystać z kontenerów Linux. W PowerShell sprawdź:
 
 ```powershell
 git --version
@@ -17,22 +17,22 @@ docker compose version
 node --version
 ```
 
-Node.js musi mieÄ‡ co najmniej 22.13. Dla VoidNAS i Velin uĹĽywamy pnpm 11.19.0; dla Temp Mail npm. Compose z plikami `!override` wymaga wersji 2.24.4+. Python 3.13 potrzebny jest tylko do backendu uruchamianego poza Dockerem.
+Node.js musi mieć co najmniej 22.13. Dla VoidNAS i Velin używamy pnpm 11.19.0; dla Temp Mail npm. Compose z plikami `!override` wymaga wersji 2.24.4+. Python 3.13 potrzebny jest tylko do backendu uruchamianego poza Dockerem.
 
-Logowanie do GitHub w ChatGPT nie oznacza automatycznego zalogowania Git ani GitHub CLI. Nie wysyĹ‚aj mi tokenu. W tym katalogu jest LOGOWANIE.ps1 uruchamiajÄ…cy pobrany, zweryfikowany GitHub CLI; sam wykonaj logowanie w przeglÄ…darce:
+Logowanie do GitHub w ChatGPT nie oznacza automatycznego zalogowania Git ani GitHub CLI. Nie wysyłaj mi tokenu. Możesz uruchomić pobrany i zweryfikowany program bez pliku .ps1 i bez zmiany polityki PowerShell:
 
 ```powershell
-.\LOGOWANIE.ps1
+& 'C:\Users\hmpow\Documents\Codex\2026-10-12\uporz-dkuj-i-umie-na-github\work\tools\cli\bin\gh.exe' auth login --hostname github.com --git-protocol https --web
 ```
 
-JeĹ›li masz wĹ‚asny GitHub CLI:
+Jeśli masz własny GitHub CLI:
 
 ```powershell
 gh auth login --hostname github.com --git-protocol https --web
 gh auth status
 ```
 
-UĹĽyj konta HMpower1. Nie dodawaj tokenu do adresu remote, skryptu ani .env.example. Nie wybieraj publicznej widocznoĹ›ci.
+Użyj konta HMpower1. Nie dodawaj tokenu do adresu remote, skryptu ani .env.example. Nie wybieraj publicznej widoczności.
 
 ## 3. Klonowanie i uruchamianie
 
@@ -46,7 +46,7 @@ Set-Location .\velin-whiteboard
 node scripts/init-env.mjs
 ```
 
-Generator Velin odmawia nadpisania istniejÄ…cego .env. W nowym .env ustaw APP_URL, AUTH_URL i NEXT_PUBLIC_APP_URL na http://localhost:8091 oraz NEXT_PUBLIC_WS_URL na ws://localhost:8091/ws. NastÄ™pnie:
+Generator Velin odmawia nadpisania istniejącego .env. W nowym .env ustaw APP_URL, AUTH_URL i NEXT_PUBLIC_APP_URL na http://localhost:8091 oraz NEXT_PUBLIC_WS_URL na ws://localhost:8091/ws. Następnie:
 
 ```powershell
 docker compose -p velin-dev -f docker-compose.yml -f docker-compose.local.yml config --quiet
@@ -54,7 +54,7 @@ docker compose -p velin-dev -f docker-compose.yml -f docker-compose.local.yml up
 docker compose -p velin-dev -f docker-compose.yml -f docker-compose.local.yml ps
 ```
 
-OtwĂłrz http://localhost:8091. Na tym komputerze dziaĹ‚a podglÄ…d Velin, ktĂłry moĹĽe zajmowaÄ‡ ten port; wybierz wolny port i dostosuj oba pliki konfiguracyjne oraz URL. Nie uruchamiaj komendy na oryginalnym katalogu produkcji bez planu wdroĹĽenia.
+Otwórz http://localhost:8091. Na tym komputerze działa podgląd Velin, który może zajmować ten port; wybierz wolny port i dostosuj oba pliki konfiguracyjne oraz URL. Nie uruchamiaj komendy na oryginalnym katalogu produkcji bez planu wdrożenia.
 
 Dla VoidNAS:
 
@@ -63,12 +63,12 @@ Set-Location C:\Projekty
 git clone https://github.com/HMpower1/voidnas.git
 Set-Location .\voidnas
 if (!(Test-Path .env)) { Copy-Item .env.example .env }
-# UzupeĹ‚nij .env wedĹ‚ug README.md; nie uĹĽywaj pustych sekretĂłw.
+# Uzupełnij .env według README.md; nie używaj pustych sekretów.
 docker compose -p voidnas-dev -f docker-compose.yml -f docker-compose.local.yml config --quiet
 docker compose -p voidnas-dev -f docker-compose.yml -f docker-compose.local.yml up -d --build
 ```
 
-DomyĹ›lny lokalny adres: http://localhost:8090. MoĹĽe byÄ‡ zajÄ™ty przez oryginalne wdroĹĽenie. STORAGE_HOST_PATH musi wskazywaÄ‡ osobny katalog danych testowych, a nie istniejÄ…cy NAS. Osobna nazwa Compose rozdziela wolumeny, ale sama nie rozdziela bind mountĂłw, portĂłw ani zewnÄ™trznych sieci.
+Domyślny lokalny adres: http://localhost:8090. Może być zajęty przez oryginalne wdrożenie. STORAGE_HOST_PATH musi wskazywać osobny katalog danych testowych, a nie istniejący NAS. Osobna nazwa Compose rozdziela wolumeny, ale sama nie rozdziela bind mountów, portów ani zewnętrznych sieci.
 
 Dla Temp Mail:
 
@@ -83,12 +83,12 @@ npm run lint
 npm run typecheck
 npm run build
 if (!(Test-Path deploy/.env)) { Copy-Item deploy/.env.example deploy/.env }
-# UzupeĹ‚nij konfiguracjÄ™ poczty i bazy w deploy/.env.
+# Uzupełnij konfigurację poczty i bazy w deploy/.env.
 docker compose --env-file deploy/.env -p temp-mail-dev -f deploy/compose.home.yaml config --quiet
 docker compose --env-file deploy/.env -p temp-mail-dev -f deploy/compose.home.yaml up -d --build
 ```
 
-Compose domowy zakĹ‚ada istniejÄ…cÄ… bramÄ™ Caddy, sieÄ‡ caddy_default i domenÄ™. Bez bramy moĹĽesz uruchomiÄ‡ sam frontend komendÄ… `npm run dev` (http://localhost:5173), ale peĹ‚ny odbiĂłr poczty wymaga skonfigurowanego serwera i DNS/Mailgun. Alias temp-mail-web wspĂłĹ‚dzielony z produkcjÄ… moĹĽe powodowaÄ‡ konflikt routingu; nie wĹ‚Ä…czaj kopii do sieci produkcyjnej bez dostosowania aliasĂłw. deploy/Dockerfile.web korzysta z wczeĹ›niej wygenerowanego `.next/standalone`, dlatego `npm run build` jest konieczny przed budowÄ… obrazu. Baza poczty uĹĽywa tmpfs i jest nietrwaĹ‚a. Nie uruchamiaj testowych webhookĂłw na produkcji.
+Compose domowy zakłada istniejącą bramę Caddy, sieć caddy_default i domenę. Bez bramy możesz uruchomić sam frontend komendą `npm run dev` (http://localhost:5173), ale pełny odbiór poczty wymaga skonfigurowanego serwera i DNS/Mailgun. Alias temp-mail-web współdzielony z produkcją może powodować konflikt routingu; nie włączaj kopii do sieci produkcyjnej bez dostosowania aliasów. deploy/Dockerfile.web korzysta z wcześniej wygenerowanego `.next/standalone`, dlatego `npm run build` jest konieczny przed budową obrazu. Baza poczty używa tmpfs i jest nietrwała. Nie uruchamiaj testowych webhooków na produkcji.
 
 Dla backendu:
 
@@ -100,7 +100,7 @@ docker build -t serwerbb-backend:dev .
 docker run --rm -p 127.0.0.1:18081:8080 --tmpfs /data:uid=65534,gid=65534,mode=0700 serwerbb-backend:dev
 ```
 
-Testowe dane z tmpfs zniknÄ… po zamkniÄ™ciu. Oryginalny compose.yaml jest zwiÄ…zany z sieciami caddy_default i voidnas_public oraz konkretnymi nazwami kontenerĂłw.
+Testowe dane z tmpfs znikną po zamknięciu. Oryginalny compose.yaml jest związany z sieciami caddy_default i voidnas_public oraz konkretnymi nazwami kontenerów.
 
 Infrastruktura stron:
 
@@ -114,11 +114,11 @@ docker compose -f strona/compose.yaml config --quiet
 docker compose -f caddy/compose.yaml config --quiet
 ```
 
-To konfiguracja istniejÄ…cego serwera, a nie gotowe izolowane Ĺ›rodowisko developerskie. Caddy uĹĽywa portĂłw 80/443, domen i zewnÄ™trznych sieci, takĹĽe integracji z pominiÄ™tym Nextcloud. Nie restartuj go na Ĺ›lepo. DDNS korzysta z lokalnego pliku `ddns/secrets/cloudflare_api_token.txt`; token ma minimalne uprawnienia do wĹ‚aĹ›ciwej strefy DNS i pozostaje poza Git. Backend klonuje siÄ™ osobno; jego compose uruchamiaj w jego katalogu, a nie przez brakujÄ…cy server-infra/backend.
+To konfiguracja istniejącego serwera, a nie gotowe izolowane środowisko developerskie. Caddy używa portów 80/443, domen i zewnętrznych sieci, także integracji z pominiętym Nextcloud. Nie restartuj go na ślepo. DDNS korzysta z lokalnego pliku `ddns/secrets/cloudflare_api_token.txt`; token ma minimalne uprawnienia do właściwej strefy DNS i pozostaje poza Git. Backend klonuje się osobno; jego compose uruchamiaj w jego katalogu, a nie przez brakujący server-infra/backend.
 
 ## 4. Bezpieczny .env
 
-.env.example opisuje nazwy i przykĹ‚adowe ustawienia. .env przechowuje lokalne wartoĹ›ci. UĹĽywaj niezaleĹĽnych kluczy dla sesji, CSRF, usĹ‚ug i baz. Sekrety moĹĽna generowaÄ‡ lokalnie bez drukowania wartoĹ›ci:
+.env.example opisuje nazwy i przykładowe ustawienia. .env przechowuje lokalne wartości. Używaj niezależnych kluczy dla sesji, CSRF, usług i baz. Sekrety można generować lokalnie bez drukowania wartości:
 
 ```powershell
 $secretBytes = New-Object byte[] 32
@@ -129,7 +129,7 @@ $newSecret = -join ($secretBytes | ForEach-Object { $_.ToString('x2') })
 $rng.Dispose()
 ```
 
-Nie zmieniaj hasĹ‚a istniejÄ…cego PostgreSQL samÄ… edycjÄ… POSTGRES_PASSWORD: istniejÄ…cy wolumen zachowuje poprzednie hasĹ‚o i wymaga kontrolowanej zmiany w bazie. DATABASE_URL musi zgadzaÄ‡ siÄ™ z konfiguracjÄ… bazy. Zmiana kluczy sesji moĹĽe wylogowaÄ‡ uĹĽytkownikĂłw. Prefiksy NEXT_PUBLIC_ oraz VITE_ oznaczajÄ… wartoĹ›ci trafiajÄ…ce do przeglÄ…darki: nigdy nie wkĹ‚adaj tam prywatnych kluczy.
+Nie zmieniaj hasła istniejącego PostgreSQL samą edycją POSTGRES_PASSWORD: istniejący wolumen zachowuje poprzednie hasło i wymaga kontrolowanej zmiany w bazie. DATABASE_URL musi zgadzać się z konfiguracją bazy. Zmiana kluczy sesji może wylogować użytkowników. Prefiksy NEXT_PUBLIC_ oraz VITE_ oznaczają wartości trafiające do przeglądarki: nigdy nie wkładaj tam prywatnych kluczy.
 
 ```powershell
 git check-ignore .env
@@ -137,11 +137,11 @@ git ls-files .env
 git ls-files -ci --exclude-standard
 ```
 
-JeĹ›li .env jest Ĺ›ledzony, .gitignore nie usuwa go z Git. Wycofaj tylko Ĺ›ledzenie przez `git rm --cached -- .env`, pozostawiajÄ…c plik na dysku, dopiero po przeglÄ…dzie staged diff. JeĹ›li sekret byĹ‚ w commicie, samo usuniÄ™cie pliku nie czyĹ›ci historii.
+Jeśli .env jest śledzony, .gitignore nie usuwa go z Git. Wycofaj tylko śledzenie przez `git rm --cached -- .env`, pozostawiając plik na dysku, dopiero po przeglądzie staged diff. Jeśli sekret był w commicie, samo usunięcie pliku nie czyści historii.
 
 ## 5. Codzienna praca
 
-Najpierw sprawdĹş repo i zmiany; dodawaj konkretne pliki:
+Najpierw sprawdź repo i zmiany; dodawaj konkretne pliki:
 
 ```powershell
 git status --short
@@ -149,41 +149,41 @@ git diff
 git add -- README.md
 git diff --cached --stat
 git diff --cached
-git commit -m "docs: popraw instrukcjÄ™ uruchomienia"
+git commit -m "docs: popraw instrukcję uruchomienia"
 git pull --ff-only
 git push
 ```
 
-Diff moĹĽe pokazaÄ‡ sekret, jeĹĽeli go przypadkiem wpisaĹ‚eĹ› â€” oglÄ…daj lokalnie i nie kopiuj do czatu. Przed commitem i push uĹĽyj lokalnego Gitleaks z peĹ‚nÄ… redakcjÄ…. `pull --ff-only` odmĂłwi rozbieĹĽnej historii; wtedy przerwij i rozwiÄ…ĹĽ rozbieĹĽnoĹ›Ä‡ na branchu. Nie uĹĽywaj force push, reset --hard ani masowego add bez przeglÄ…du. Commit obejmuje wyĹ‚Ä…cznie staged pliki, push wysyĹ‚a takĹĽe wszystkie osiÄ…galne wczeĹ›niejsze commity.
+Diff może pokazać sekret, jeżeli go przypadkiem wpisałeś — oglądaj lokalnie i nie kopiuj do czatu. Przed commitem i push użyj lokalnego Gitleaks z pełną redakcją. `pull --ff-only` odmówi rozbieżnej historii; wtedy przerwij i rozwiąż rozbieżność na branchu. Nie używaj force push, reset --hard ani masowego add bez przeglądu. Commit obejmuje wyłącznie staged pliki, push wysyła także wszystkie osiągalne wcześniejsze commity.
 
 ## 6. Branche i pull requesty
 
 ```powershell
-git switch main # Temp Mail zachowuje istniejącą gałąź master: użyj git switch master
+git switch main
 git pull --ff-only
 git switch -c feature/opis-zmiany
-# ZmieĹ„ kod i wykonaj testy odpowiednie dla projektu.
+# Zmień kod i wykonaj testy odpowiednie dla projektu.
 git add -- src/plik.ts
 git diff --cached
-git commit -m "feat: opisz faktycznÄ… zmianÄ™"
+git commit -m "feat: opisz faktyczną zmianę"
 git push -u origin feature/opis-zmiany
 gh pr create --base main --title "Opis zmiany" --body "Co zmieniono i jakie kontrole wykonano"
 ```
 
-Plik src/plik.ts to przykĹ‚ad: uĹĽyj rzeczywistej Ĺ›cieĹĽki ze swojego repo. Poczekaj na CI, przejrzyj diff i dopiero potem scal. Workflow nie uĹĽywa sekretĂłw i nie uruchamia pull_request_target. Nie dodawaj poĹ›wiadczeĹ„ do testĂłw.
+Plik src/plik.ts to przykład: użyj rzeczywistej ścieżki ze swojego repo. Poczekaj na CI, przejrzyj diff i dopiero potem scal. Workflow nie używa sekretów i nie uruchamia pull_request_target. Nie dodawaj poświadczeń do testów.
 
 ## 7. Wersje, tagi i wydania
 
-Obecna wersja gĹ‚Ăłwnych projektĂłw to 0.1.0, przygotowana jako prerelease. temp-mail/server ma wĹ‚asnÄ… istniejÄ…cÄ… wersjÄ™ 1.0.0 â€” zachowano jÄ…. Nie nadpisuj istniejÄ…cych tagĂłw. Po faktycznej poprawce przykĹ‚adowe kolejne wydanie:
+Obecna wersja głównych projektów to 0.1.0, przygotowana jako prerelease. temp-mail/server ma własną istniejącą wersję 1.0.0 — zachowano ją. Nie nadpisuj istniejących tagów. Po faktycznej poprawce przykładowe kolejne wydanie:
 
 ```powershell
 git switch -c release/0.1.1
 # Uaktualnij VERSION, odpowiedni package.json i CHANGELOG.md.
-# Zachowaj lock przez wĹ‚aĹ›ciwy manager, bez mieszania npm z pnpm.
+# Zachowaj lock przez właściwy manager, bez mieszania npm z pnpm.
 git add -- VERSION package.json CHANGELOG.md
-git commit -m "chore: przygotuj wersjÄ™ 0.1.1"
-# PrzeprowadĹş review/PR i kontrole, scal, nastÄ™pnie:
-git switch main # Temp Mail zachowuje istniejącą gałąź master: użyj git switch master
+git commit -m "chore: przygotuj wersję 0.1.1"
+# Przeprowadź review/PR i kontrole, scal, następnie:
+git switch main
 git pull --ff-only
 git tag -a v0.1.1 -m "0.1.1: opisz faktyczne zmiany"
 git push origin main
@@ -191,41 +191,45 @@ git push origin v0.1.1
 gh release create v0.1.1 --verify-tag --prerelease --title "0.1.1" --notes-file RELEASE_NOTES.md
 ```
 
-Backend i indeks nie majÄ… package.json; dodawaj tylko istniejÄ…ce pliki. Dla aplikacji z package-lock.json uĹĽyj npm, dla pnpm-lock.yaml â€” pnpm. OdĹ›wieĹĽ plik lock po zmianie wersji. W RELEASE_NOTES.md opisz konkretne zmiany, ograniczenia i wyniki kontroli. Tag to znacznik commita; GitHub Release to opis wydania powiÄ…zany z tagiem. Nie oznaczaj 1.0.0 bez zweryfikowanej stabilnoĹ›ci.
+Backend i indeks nie mają package.json; dodawaj tylko istniejące pliki. Dla aplikacji z package-lock.json użyj npm, dla pnpm-lock.yaml — pnpm. Odśwież plik lock po zmianie wersji. W RELEASE_NOTES.md opisz konkretne zmiany, ograniczenia i wyniki kontroli. Tag to znacznik commita; GitHub Release to opis wydania powiązany z tagiem. Nie oznaczaj 1.0.0 bez zweryfikowanej stabilności.
 
-## 8. Bezpieczny powrĂłt do wczeĹ›niejszej wersji
+## 8. Bezpieczny powrót do wcześniejszej wersji
 
-Do obejrzenia starego kodu bez naruszenia bieĹĽÄ…cego katalogu:
+Do obejrzenia starego kodu bez naruszenia bieżącego katalogu:
 
 ```powershell
 git worktree add --detach ..\velin-0.1.0 v0.1.0
 ```
 
-Do cofniÄ™cia bĹ‚Ä™dnego commita z zachowaniem historii:
+Do cofnięcia błędnego commita z zachowaniem historii:
 
 ```powershell
 git status
 git switch -c fix/cofniecie
 git log --oneline -10
-# ZastÄ…p <SHA> wybranym identyfikatorem; nawiasĂłw nie wpisuj.
+# Zastąp <SHA> wybranym identyfikatorem; nawiasów nie wpisuj.
 git revert <SHA>
 git push -u origin fix/cofniecie
 ```
 
-Nie cofaj migracji bazy przez samÄ… zmianÄ™ kodu. PrzywrĂłcenie wdroĹĽenia wymaga zgodnego obrazu, konfiguracji i backupu danych. Najpierw wykonaj backup i test odtwarzania w odrÄ™bnych wolumenach. Nigdy nie uĹĽywaj `docker compose down -v` do aktualizacji lub cofniÄ™cia produkcji â€” usuwa wolumeny.
+Nie cofaj migracji bazy przez samą zmianę kodu. Przywrócenie wdrożenia wymaga zgodnego obrazu, konfiguracji i backupu danych. Najpierw wykonaj backup i test odtwarzania w odrębnych wolumenach. Nigdy nie używaj `docker compose down -v` do aktualizacji lub cofnięcia produkcji — usuwa wolumeny.
 
-## 9. Czego nie wysyĹ‚aÄ‡
+## 9. Czego nie wysyłać
 
-Nie wysyĹ‚aj .env, haseĹ‚, tokenĂłw Cloudflare/Mailgun, prywatnych kluczy, cookie i sesji, baz, kontaktĂłw, poczty, zawartoĹ›ci NAS, backupĂłw, prywatnych danych S3, logĂłw z danymi osobowymi ani zrzutĂłw produkcji. node_modules, .next, dist, build, cache i raporty sÄ… odtwarzalne. ĹąrĂłdĹ‚a, potrzebne publiczne zasoby, migracje oraz pliki lock naleĹĽy zachowaÄ‡. Prywatne repo nadal wymaga ochrony sekretĂłw.
+Nie wysyłaj .env, haseł, tokenów Cloudflare/Mailgun, prywatnych kluczy, cookie i sesji, baz, kontaktów, poczty, zawartości NAS, backupów, prywatnych danych S3, logów z danymi osobowymi ani zrzutów produkcji. node_modules, .next, dist, build, cache i raporty są odtwarzalne. Źródła, potrzebne publiczne zasoby, migracje oraz pliki lock należy zachować. Prywatne repo nadal wymaga ochrony sekretów.
 
 ## 10. Ujawnienie klucza
 
-Najpierw uniewaĹĽnij ujawniony klucz u dostawcy i utwĂłrz nowy z minimalnymi uprawnieniami. Zaktualizuj lokalnÄ… konfiguracjÄ™ i sprawdĹş logi dostÄ™pu. Zatrzymaj push projektu. Ustal plik, commit i zakres ekspozycji, nie kopiuj wartoĹ›ci sekretu. UsuniÄ™cie z ostatniego commita nie wystarcza, jeĹĽeli klucz pozostaĹ‚ w historii, PR, logu lub cache. Przygotuj plan usuniÄ™cia z caĹ‚ej historii, kopii i klonĂłw, skonsultuj go z wĹ‚aĹ›cicielem i uzyskaj zgodÄ™ przed przepisaniem historii. W tym zadaniu nie wolno stosowaÄ‡ force push; ewentualne odzyskanie wymaga osobno uzgodnionej procedury z GitHub Support. Nigdy nie zakĹ‚adaj, ĹĽe samo prywatne repo uniewaĹĽnia wyciek.
+Najpierw unieważnij ujawniony klucz u dostawcy i utwórz nowy z minimalnymi uprawnieniami. Zaktualizuj lokalną konfigurację i sprawdź logi dostępu. Zatrzymaj push projektu. Ustal plik, commit i zakres ekspozycji, nie kopiuj wartości sekretu. Usunięcie z ostatniego commita nie wystarcza, jeżeli klucz pozostał w historii, PR, logu lub cache. Przygotuj plan usunięcia z całej historii, kopii i klonów, skonsultuj go z właścicielem i uzyskaj zgodę przed przepisaniem historii. W tym zadaniu nie wolno stosować force push; ewentualne odzyskanie wymaga osobno uzgodnionej procedury z GitHub Support. Nigdy nie zakładaj, że samo prywatne repo unieważnia wyciek.
 
-## 11. Git nie zastÄ™puje backupu
+## 11. Git nie zastępuje backupu
 
-Repo przechowuje kod i jego historiÄ™. Nie przechowuje wykluczonych danych, .env, wolumenĂłw Docker, bazy uĹĽytkownikĂłw, NAS ani obiektĂłw S3. Potrzebujesz oddzielnego, szyfrowanego backupu konfiguracji i danych, kopii poza komputerem oraz sprawdzonego odtwarzania. Temp Mail celowo korzysta z nietrwaĹ‚ej poczty â€” nie dorabiaj backupu treĹ›ci bez Ĺ›wiadomej zmiany polityki.
+Repo przechowuje kod i jego historię. Nie przechowuje wykluczonych danych, .env, wolumenów Docker, bazy użytkowników, NAS ani obiektów S3. Potrzebujesz oddzielnego, szyfrowanego backupu konfiguracji i danych, kopii poza komputerem oraz sprawdzonego odtwarzania. Temp Mail celowo korzysta z nietrwałej poczty — nie dorabiaj backupu treści bez świadomej zmiany polityki.
 
 ## 12. Zabezpieczenia GitHub
 
-Po publikacji zweryfikuj `visibility=private`, SHA gaĹ‚Ä™zi i tagu oraz wynik Actions. WĹ‚Ä…cz dostÄ™pne Dependabot alerts, security updates i ochronÄ™ gĹ‚Ăłwnej gaĹ‚Ä™zi. Ochrona prywatnych repo i Secret Protection mogÄ… zaleĹĽeÄ‡ od planu konta; status ustal z odpowiedzi API lub ustawieĹ„, nie z samej obecnoĹ›ci YAML. Nie kupuj dodatkĂłw ani nie wĹ‚Ä…czaj wersji prĂłbnej bez decyzji wĹ‚aĹ›ciciela. Lokalny Gitleaks i workflow pozostajÄ… potrzebne niezaleĹĽnie od pĹ‚atnych funkcji. Aktualny stan aktywacji jest zapisany w RAPORT.md.
+Po publikacji zweryfikuj `visibility=private`, SHA gałęzi i tagu oraz wynik Actions. Włącz dostępne Dependabot alerts, security updates i ochronę głównej gałęzi. Ochrona prywatnych repo i Secret Protection mogą zależeć od planu konta; status ustal z odpowiedzi API lub ustawień, nie z samej obecności YAML. Nie kupuj dodatków ani nie włączaj wersji próbnej bez decyzji właściciela. Lokalny Gitleaks i workflow pozostają potrzebne niezależnie od płatnych funkcji. Aktualny stan aktywacji jest zapisany w RAPORT.md.
+
+## Gałęzie i prywatne repozytoria
+
+Temp Mail zachowuje istniejącą gałąź master; w poleceniach PR, pull, tag/push użyj master zamiast main. Pozostałe repozytoria używają main. Przygotowane kopie mają dodatkowy remote github; Temp Mail zachowuje także origin wskazujący źródło lokalnego klonu. Upstream ustawiono na github. Nowy klon z GitHub ma standardowy remote origin. Aby Git w PowerShell korzystał z zalogowanego CLI, uruchom gh auth setup-git.

@@ -1,0 +1,410 @@
+[
+  {
+    "name": "server-infra",
+    "url": "https://github.com/HMpower1/server-infra",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "main",
+    "commit": "47f52058699a1a4d2f2cbab6c46e15064d097b9f",
+    "tag_commit": "4f92ffecca97ef58f0291835a47bea1b3fce086c",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/server-infra/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38306971047,
+        "headSha": "4f92ffecca97ef58f0291835a47bea1b3fce086c",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/server-infra/actions/runs/38306971047"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "success",
+      "databaseId": 38306971047,
+      "headSha": "4f92ffecca97ef58f0291835a47bea1b3fce086c",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/server-infra/actions/runs/38306971047"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "checks",
+        "conclusion": "success",
+        "failed_steps": []
+      }
+    ]
+  },
+  {
+    "name": "serwerbb-backend",
+    "url": "https://github.com/HMpower1/serwerbb-backend",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "main",
+    "commit": "bec0792fbf18d036cbd2d937dc4d85a2beaeaca8",
+    "tag_commit": "20d855f31f94191d16a4edc67d266a7d5c704c7f",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/serwerbb-backend/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38307014568,
+        "headSha": "20d855f31f94191d16a4edc67d266a7d5c704c7f",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/serwerbb-backend/actions/runs/38307014568"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "success",
+      "databaseId": 38307014568,
+      "headSha": "20d855f31f94191d16a4edc67d266a7d5c704c7f",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/serwerbb-backend/actions/runs/38307014568"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "checks",
+        "conclusion": "success",
+        "failed_steps": []
+      }
+    ]
+  },
+  {
+    "name": "velin-whiteboard",
+    "url": "https://github.com/HMpower1/velin-whiteboard",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "main",
+    "commit": "c30be0c84f686858babf36ef98bcf6615ea0ca17",
+    "tag_commit": "daff36dffb5050c966174374d26f7812e4309b79",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/velin-whiteboard/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38307054665,
+        "headSha": "daff36dffb5050c966174374d26f7812e4309b79",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/velin-whiteboard/actions/runs/38307054665"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "failure",
+      "databaseId": 38307054665,
+      "headSha": "daff36dffb5050c966174374d26f7812e4309b79",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/velin-whiteboard/actions/runs/38307054665"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "checks",
+        "conclusion": "failure",
+        "failed_steps": [
+          "Run pnpm audit --audit-level=high"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "voidnas",
+    "url": "https://github.com/HMpower1/voidnas",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "main",
+    "commit": "8ceadc4976be5902dc5997642440dbd2cfaef0c8",
+    "tag_commit": "eec4030d83655b559a86332f87582e0b65d4ed27",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/voidnas/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38307108625,
+        "headSha": "eec4030d83655b559a86332f87582e0b65d4ed27",
+        "status": "queued",
+        "url": "https://github.com/HMpower1/voidnas/actions/runs/38307108625"
+      },
+      {
+        "conclusion": "",
+        "databaseId": 38307098182,
+        "headSha": "eec4030d83655b559a86332f87582e0b65d4ed27",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/voidnas/actions/runs/38307098182"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "success",
+      "databaseId": 38307098182,
+      "headSha": "eec4030d83655b559a86332f87582e0b65d4ed27",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/voidnas/actions/runs/38307098182"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "checks",
+        "conclusion": "success",
+        "failed_steps": []
+      }
+    ]
+  },
+  {
+    "name": "temp-mail",
+    "url": "https://github.com/HMpower1/temp-mail",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "master",
+    "commit": "ae30817af8003cc09bc15239376db6a2ea4bfabc",
+    "tag_commit": "16645e4b1d88ed457fabf561bb0a027feb786840",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/temp-mail/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38307144176,
+        "headSha": "16645e4b1d88ed457fabf561bb0a027feb786840",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/temp-mail/actions/runs/38307144176"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "failure",
+      "databaseId": 38307144176,
+      "headSha": "16645e4b1d88ed457fabf561bb0a027feb786840",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/temp-mail/actions/runs/38307144176"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      },
+      {
+        "name": "checks",
+        "conclusion": "failure",
+        "failed_steps": [
+          "Run npm audit --audit-level=high"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "projects-index",
+    "url": "https://github.com/HMpower1/projects-index",
+    "version": "0.1.0",
+    "security": {
+      "dependabot_alerts": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "dependabot_security_updates": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "workflow_read_permissions": {
+        "active": true,
+        "reason": null,
+        "verified": true
+      },
+      "secret_protection": {
+        "active": false,
+        "reason": "Secret scanning is not available for this repository.",
+        "state": null
+      },
+      "branch_protection": {
+        "active": false,
+        "reason": "Upgrade to GitHub Pro or make this repository public to enable this feature."
+      }
+    },
+    "private": true,
+    "branch": "main",
+    "commit": "30891ff153ac6c37ec22d060ca0eaa3ffa9c8103",
+    "tag_commit": "30891ff153ac6c37ec22d060ca0eaa3ffa9c8103",
+    "remote_verified": true,
+    "release": "https://github.com/HMpower1/projects-index/releases/tag/v0.1.0",
+    "prerelease": true,
+    "ci": [
+      {
+        "conclusion": "",
+        "databaseId": 38307188072,
+        "headSha": "30891ff153ac6c37ec22d060ca0eaa3ffa9c8103",
+        "status": "in_progress",
+        "url": "https://github.com/HMpower1/projects-index/actions/runs/38307188072"
+      }
+    ],
+    "status": "PUBLISHED",
+    "release_ci": {
+      "conclusion": "success",
+      "databaseId": 38307188072,
+      "headSha": "30891ff153ac6c37ec22d060ca0eaa3ffa9c8103",
+      "status": "completed",
+      "url": "https://github.com/HMpower1/projects-index/actions/runs/38307188072"
+    },
+    "release_ci_jobs": [
+      {
+        "name": "secrets",
+        "conclusion": "success",
+        "failed_steps": []
+      }
+    ]
+  }
+]
